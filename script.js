@@ -45,20 +45,30 @@ function atualizarContador() {
 document.addEventListener('DOMContentLoaded', () => {
     dateSlider.addEventListener('input', () => {
         const value = dateSlider.value;
-        const diasTotais = Math.floor(value); // Converter o valor do slider em dias
-        const mesesTotais = Math.floor(diasTotais / 30);
+        const diasTotais = Math.floor(value * 90 / 100); // Converter o valor do slider para dias
 
-        diasElement.textContent = diasTotais;
+        const agora = new Date();
+        const maxDiasTotais = Math.floor((agora.getTime() - dataInicio.getTime()) / (1000 * 60 * 60 * 24)); // Dias desde a data de início até a data atual
+
+        if (diasTotais > maxDiasTotais) {
+            diasElement.textContent = maxDiasTotais;
+        } else {
+            diasElement.textContent = diasTotais;
+        }
+
         horasElement.textContent = '00';
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        if (mesesTotais < 12) {
-            broto.className = 'broto estagio-' + (mesesTotais + 1);
-            mensagemEspecial.style.display = 'none';
+        if (diasTotais < 33) {
+            broto.classList.remove('estagio-6', 'estagio-12');
+            broto.classList.add('estagio-1');
+        } else if (diasTotais < 66) {
+            broto.classList.remove('estagio-1', 'estagio-12');
+            broto.classList.add('estagio-6');
         } else {
-            broto.className = 'broto estagio-12';
-            mensagemEspecial.style.display = 'block';
+            broto.classList.remove('estagio-1', 'estagio-6');
+            broto.classList.add('estagio-12');
         }
 
         contadorAtivo = false; // Desativar o contador ao mover o slider
