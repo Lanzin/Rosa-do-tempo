@@ -1,1 +1,129 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffe6f0; /* Rosa claro suave */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff0f5; /* Branco rosado */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    color: #e91e63; /* Rosa mais forte */
+    margin-bottom: 30px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.broto-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+.broto {
+    width: 30px;
+    height: 30px;
+    background-color: #a7d129; /* Verde claro do broto */
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+/* Estágios de crescimento (você pode ajustar conforme preferir) */
+.broto.estagio-1 {
+    width: 40px;
+    height: 40px;
+}
+
+.broto.estagio-2 {
+    width: 60px;
+    height: 60px;
+    background-color: #8ac926; /* Verde um pouco mais escuro */
+}
+
+.broto.estagio-3 {
+    width: 80px;
+    height: 80px;
+    background-color: #6a994e; /* Verde mais intenso */
+}
+
+.broto::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: #a7d129;
+}
+
+.contador p {
+    color: #e91e63;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#tempo-juntos {
+    font-size: 1.5em;
+    color: #c2185b; /* Rosa escuro */
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 30px;
+    color: #757575;
+    font-size: 0.9em;
+}
+
+/* Decorações */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #ff4081; /* Rosa vibrante */
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: -1;
+    animation: flutuar 3s infinite alternate;
+}
+
+body::before {
+    left: 10%;
+}
+
+body::after {
+    right: 15%;
+    transform: translateY(30px);
+    animation-delay: 1s;
+}
+
+@keyframes flutuar {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(20px);
+    }
+}
 
