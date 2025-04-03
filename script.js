@@ -37,6 +37,25 @@ function atualizarContador() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const broto = document.querySelector('.broto');
+    const dateSlider = document.getElementById('date-slider');
+
+    dateSlider.addEventListener('input', () => {
+        const value = dateSlider.value;
+
+        if (value < 33) {
+            broto.classList.remove('estagio-2', 'estagio-3');
+            broto.classList.add('estagio-1');
+        } else if (value < 66) {
+            broto.classList.remove('estagio-1', 'estagio-3');
+            broto.classList.add('estagio-2');
+        } else {
+            broto.classList.remove('estagio-1', 'estagio-2');
+            broto.classList.add('estagio-3');
+        }
+    });
+});
 // Atualiza o contador a cada segundo
 setInterval(atualizarContador, 1000);
 
