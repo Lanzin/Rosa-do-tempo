@@ -4,6 +4,7 @@ const horasElement = document.getElementById('horas');
 const minutosElement = document.getElementById('minutos');
 const segundosElement = document.getElementById('segundos');
 const dateSlider = document.getElementById('date-slider');
+const mensagemEspecial = document.getElementById('mensagem-especial');
 
 // Defina a data em que o relacionamento começou (ano, mês (0-11), dia)
 const dataInicio = new Date(2024, 10, 15); // Exemplo: 15 de Novembro de 2024
@@ -20,6 +21,7 @@ function atualizarContador() {
     const minutosTotais = Math.floor(segundosTotais / 60);
     const horasTotais = Math.floor(minutosTotais / 60);
     const diasTotais = Math.floor(horasTotais / 24);
+    const mesesTotais = Math.floor(diasTotais / 30);
 
     const segundos = segundosTotais % 60;
     const minutos = minutosTotais % 60;
@@ -30,37 +32,33 @@ function atualizarContador() {
     minutosElement.textContent = minutos < 10 ? '0' + minutos : minutos;
     segundosElement.textContent = segundos < 10 ? '0' + segundos : segundos;
 
-    // Simulação de crescimento do broto (ajuste os tempos conforme preferir)
-    if (diasTotais > 7) {
-        broto.classList.add('estagio-1');
-    }
-    if (diasTotais > 30) {
-        broto.classList.add('estagio-2');
-    }
-    if (diasTotais > 90) {
-        broto.classList.add('estagio-3');
+    // Simulação de crescimento do broto
+    if (mesesTotais >= 12) {
+        broto.classList.add('estagio-12');
+        mensagemEspecial.style.display = 'block';
+    } else {
+        broto.className = 'broto estagio-' + (mesesTotais + 1);
+        mensagemEspecial.style.display = 'none';
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     dateSlider.addEventListener('input', () => {
         const value = dateSlider.value;
-        const diasTotais = Math.floor(value * 90 / 100); // Converter o valor do slider para dias
+        const diasTotais = Math.floor(value); // Converter o valor do slider em dias
+        const mesesTotais = Math.floor(diasTotais / 30);
 
         diasElement.textContent = diasTotais;
         horasElement.textContent = '00';
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        if (diasTotais < 33) {
-            broto.classList.remove('estagio-2', 'estagio-3');
-            broto.classList.add('estagio-1');
-        } else if (diasTotais < 66) {
-            broto.classList.remove('estagio-1', 'estagio-3');
-            broto.classList.add('estagio-2');
+        if (mesesTotais < 12) {
+            broto.className = 'broto estagio-' + (mesesTotais + 1);
+            mensagemEspecial.style.display = 'none';
         } else {
-            broto.classList.remove('estagio-1', 'estagio-2');
-            broto.classList.add('estagio-3');
+            broto.className = 'broto estagio-12';
+            mensagemEspecial.style.display = 'block';
         }
 
         contadorAtivo = false; // Desativar o contador ao mover o slider
