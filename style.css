@@ -50,18 +50,19 @@ main {
 }
 
 /* Estágios de crescimento (um para cada mês) */
-.broto.estagio-1 { background-image: url('images/estagio-1.jpg'); }
-.broto.estagio-2 { background-image: url('images/estagio-2.jpg'); }
-.broto.estagio-3 { background-image: url('images/estagio-3.jpg'); }
-.broto.estagio-4 { background-image: url('images/estagio-4.jpg'); }
-.broto.estagio-5 { background-image: url('images/estagio-5.jpg'); }
-.broto.estagio-6 { background-image: url('images/estagio-6.jpg'); }
-.broto.estagio-7 { background-image: url('images/estagio-7.jpg'); }
-.broto.estagio-8 { background-image: url('images/estagio-8.jpg'); }
-.broto.estagio-9 { background-image: url('images/estagio-9.jpg'); }
-.broto.estagio-10 { background-image: url('images/estagio-10.jpg'); }
-.broto.estagio-11 { background-image: url('images/estagio-11.jpg'); }
-.broto.estagio-12 { background-image: url('images/estagio-12.jpg'); }
+.broto.estagio-1 { background-image: url('imagem_estagio_1.jpg'); }
+.broto.estagio-2 { background-image: url('imagem_estagio_2.jpg'); }
+.broto.estagio-3 { background-image: url('imagem_estagio_3.jpg'); }
+.broto.estagio-4 { background-image: url('imagem_estagio_4.jpg'); }
+.broto.estagio-5 { background-image: url('imagem_estagio_5.jpg'); }
+.broto.estagio-6 { background-image: url('imagem_estagio_6.jpg'); }
+.broto.estagio-7 { background-image: url('imagem_estagio_7.jpg'); }
+.broto.estagio-8 { background-image: url('imagem_estagio_8.jpg'); }
+.broto.estagio-9 { background-image: url('imagem_estagio_9.jpg'); }
+.broto.estagio-10 { background-image: url('imagem_estagio_10.jpg'); }
+.broto.estagio-11 { background-image: url('imagem_estagio_11.jpg'); }
+.broto.estagio-12 { background-image: url('imagem_estagio_12.jpg'); }
+
 
 }
 
