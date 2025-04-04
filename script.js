@@ -3,7 +3,7 @@ const dateSlider = document.getElementById('date-slider');
 const mensagemEspecial = document.getElementById('mensagem-especial');
 
 // Defina a data em que o relacionamento começou (ano, mês (0-11), dia)
-const dataInicio = new Date(2024, 10, 15); // Exemplo: 15 de Novembro de 2024
+const dataInicio = new Date(2024, 10, 19); // Exemplo: 15 de Novembro de 2024
 
 let contadorAtivo = true; // Variável para controlar o estado do contador
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        broto.className = 'broto estagio-' + estagio;
+        broto.className = 'broto.estagio-' + estagio;
 
         if (estagio >= 12) {
             mensagemEspecial.style.display = 'block';
