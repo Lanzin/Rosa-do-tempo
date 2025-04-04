@@ -7,21 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="broto-container">
-    <div class="broto estagio-1"></div>
-    </div>
     <div class="container">
         <header>
             <h1>Rosa do Tempo</h1>
         </header>
         <main>
-            <div class="slider-container">
-                <label for="date-slider">Retroceder data:</label>
-                <input type="range" id="date-slider" min="0" max="365" value="0">
-            </div>
-            <div class="broto-container">
-                <div class="broto"></div>
-            </div>
             <div class="contador">
                 <p>Nosso amor floresce há:</p>
                 <div id="tempo-juntos">
@@ -32,15 +22,35 @@
                     <span id="segundos">0</span> segundos.
                 </div>
             </div>
-            <div id="mensagem-especial" style="display:none;">
+            <div class="broto-container">
+                <div class="broto"></div>
+            </div>
+            <div class="selecionar-estagio">
+                <label for="meses-select">Escolha um estágio do broto:</label>
+                <select id="meses-select">
+                    <option value="0">Mês atual</option>
+                    <option value="1">1 mês</option>
+                    <option value="2">2 meses</option>
+                    <option value="3">3 meses</option>
+                    <option value="4">4 meses</option>
+                    <option value="5">5 meses</option>
+                    <option value="6">6 meses</option>
+                    <option value="7">7 meses</option>
+                    <option value="8">8 meses</option>
+                    <option value="9">9 meses</option>
+                    <option value="10">10 meses</option>
+                    <option value="11">11 meses</option>
+                    <option value="12">12 meses</option>
+                </select>
+            </div>
+            <div id="mensagem-especial" style="display: none;">
                 <p>Feliz Aniversário de 1 Ano!</p>
             </div>
         </main>
         <footer>
-            <p>Com amor, para você.</p>
+            <p>Com muito amor, para minha rosa 🌹.</p>
         </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
