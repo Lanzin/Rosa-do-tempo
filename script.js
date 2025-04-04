@@ -1,14 +1,18 @@
 const segundosElement = document.getElementById('segundos');
+const minutosElement = document.getElementById('minutos');
+const horasElement = document.getElementById('horas');
+const diasElement = document.getElementById('dias');
 const dateSlider = document.getElementById('date-slider');
 const mensagemEspecial = document.getElementById('mensagem-especial');
+const broto = document.querySelector('.broto'); // Adicionado
 
 // Defina a data em que o relacionamento começou (ano, mês (0-11), dia)
-const dataInicio = new Date(2024, 10, 19); // Exemplo: 15 de Novembro de 2024
+const dataInicio = new Date(2024, 10, 19);
 
-let contadorAtivo = true; // Variável para controlar o estado do contador
+let contadorAtivo = true;
 
 function atualizarContador() {
-    if (!contadorAtivo) return; // Se o contador não estiver ativo, não atualiza
+    if (!contadorAtivo) return;
 
     const agora = new Date();
     const diferenca = agora.getTime() - dataInicio.getTime();
@@ -28,7 +32,6 @@ function atualizarContador() {
     minutosElement.textContent = minutos < 10 ? '0' + minutos : minutos;
     segundosElement.textContent = segundos < 10 ? '0' + segundos : segundos;
 
-    // Simulação de crescimento do broto
     if (mesesTotais >= 12) {
         broto.classList.add('estagio-12');
         mensagemEspecial.style.display = 'block';
@@ -41,37 +44,24 @@ function atualizarContador() {
 document.addEventListener('DOMContentLoaded', () => {
     dateSlider.addEventListener('input', () => {
         const value = dateSlider.value;
-        const diasTotais = Math.floor(value * 365 / 100); // Converter o valor do slider para dias
-        const mesesTotais = Math.floor(diasTotais / 30); // Calcular os meses baseados nos dias
-        const estagio = Math.min(mesesTotais + 1, 12); // Calcular o estágio baseado nos meses
+        const diasTotais = Math.floor(value * 365 / 100);
+        const mesesTotais = Math.floor(diasTotais / 30);
+        const estagio = Math.min(mesesTotais + 1, 12);
 
         const agora = new Date();
-        const maxDiasTotais = Math.floor((agora.getTime() - dataInicio.getTime()) / (1000 * 60 * 60 * 24)); // Dias desde a data de início até a data atual
+        const maxDiasTotais = Math.floor((agora.getTime() - dataInicio.getTime()) / (1000 * 60 * 60 * 24));
 
-        if (diasTotais > maxDiasTotais) {
-            diasElement.textContent = maxDiasTotais;
-        } else {
-            diasElement.textContent = diasTotais;
-        }
-
+        diasElement.textContent = diasTotais > maxDiasTotais ? maxDiasTotais : diasTotais;
         horasElement.textContent = '00';
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
         broto.className = 'broto estagio-' + estagio;
+        mensagemEspecial.style.display = estagio >= 12 ? 'block' : 'none';
 
-        if (estagio >= 12) {
-            mensagemEspecial.style.display = 'block';
-        } else {
-            mensagemEspecial.style.display = 'none';
-        }
-
-        contadorAtivo = false; // Desativar o contador ao mover o slider
+        contadorAtivo = false;
     });
 });
 
-// Atualiza o contador a cada segundo
 setInterval(atualizarContador, 1000);
-
-// Chamada inicial para evitar um "0" inicial por muito tempo
 atualizarContador();
