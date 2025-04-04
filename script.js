@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        broto.className = 'broto.estagio-' + estagio;
+        broto.className = 'broto estagio-' + estagio;
 
         if (estagio >= 12) {
             mensagemEspecial.style.display = 'block';
