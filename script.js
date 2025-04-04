@@ -1,10 +1,9 @@
-const broto = document.querySelector('.broto');
-const diasElement = document.getElementById('dias');
-const horasElement = document.getElementById('horas');
 const minutosElement = document.getElementById('minutos');
 const segundosElement = document.getElementById('segundos');
 const dateSlider = document.getElementById('date-slider');
 const mensagemEspecial = document.getElementById('mensagem-especial');
+const diasElement = document.getElementById('dias');
+const broto = document.querySelector('.broto');
 
 // Defina a data em que o relacionamento começou (ano, mês (0-11), dia)
 const dataInicio = new Date(2024, 10, 15); // Exemplo: 15 de Novembro de 2024
@@ -46,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dateSlider.addEventListener('input', () => {
         const value = dateSlider.value;
         const diasTotais = Math.floor(value * 90 / 100); // Converter o valor do slider para dias
-        const estagio = Math.min(Math.floor(diasTotais / 30) + 1, 12); // Calcular o estágio baseado nos dias
 
         const agora = new Date();
         const maxDiasTotais = Math.floor((agora.getTime() - dataInicio.getTime()) / (1000 * 60 * 60 * 24)); // Dias desde a data de início até a data atual
@@ -61,12 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        broto.className = 'broto estagio-' + estagio;
-
-        if (estagio >= 12) {
-            mensagemEspecial.style.display = 'block';
+        if (diasTotais < 33) {
+            broto.classList.remove('estagio-6', 'estagio-12');
+            broto.classList.add('estagio-1');
+        } else if (diasTotais < 66) {
+            broto.classList.remove('estagio-1', 'estagio-12');
+            broto.classList.add('estagio-6');
         } else {
-            mensagemEspecial.style.display = 'none';
+            broto.classList.remove('estagio-1', 'estagio-6');
+            broto.classList.add('estagio-12');
         }
 
         contadorAtivo = false; // Desativar o contador ao mover o slider
@@ -75,6 +76,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Atualiza o contador a cada segundo
 setInterval(atualizarContador, 1000);
-
-// Chamada inicial para evitar um "0" inicial por muito tempo
-atualizarContador();
