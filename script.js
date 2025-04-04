@@ -6,6 +6,7 @@ const mesesElement = document.getElementById('meses');
 const mensagemEspecial = document.getElementById('mensagem-especial');
 const broto = document.querySelector('.broto');
 const mesesSelect = document.getElementById('meses-select');
+const apressadinhaImg = document.getElementById('apressadinha');
 
 const dataInicio = new Date(2024, 10, 19);
 let contadorAtivo = true;
@@ -68,13 +69,17 @@ function atualizarBroto(estagio) {
     }
 }
 
-// Seleção manual do estágio e congelamento do contador
+// Seleção manual do estágio e controle da imagem "Apressadinha"
 mesesSelect.addEventListener('change', () => {
     const estagioSelecionado = parseInt(mesesSelect.value);
+    const agora = obterHorarioBrasilia();
+    const diferenca = calcularDiferenca(dataInicio, agora);
+    const mesAtual = diferenca.totalMeses;
 
     if (estagioSelecionado === 0) {
         // Volta para o modo automático
         contadorAtivo = true;
+        apressadinhaImg.style.display = 'none'; // Esconde a imagem
         atualizarContador();
     } else {
         // Pausa o contador e mostra a data correspondente
@@ -83,15 +88,22 @@ mesesSelect.addEventListener('change', () => {
         let dataFicticia = new Date(dataInicio);
         dataFicticia.setMonth(dataInicio.getMonth() + estagioSelecionado);
         
-        let diferenca = calcularDiferenca(dataInicio, dataFicticia);
+        let diferencaManual = calcularDiferenca(dataInicio, dataFicticia);
 
-        mesesElement.textContent = diferenca.totalMeses;
-        diasElement.textContent = diferenca.dias;
+        mesesElement.textContent = diferencaManual.totalMeses;
+        diasElement.textContent = diferencaManual.dias;
         horasElement.textContent = '00';
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
         atualizarBroto(estagioSelecionado);
+
+        // Exibe "Apressadinha" se o usuário selecionar um mês acima do atual
+        if (estagioSelecionado > mesAtual) {
+            apressadinhaImg.style.display = 'block';
+        } else {
+            apressadinhaImg.style.display = 'none';
+        }
     }
 });
 
