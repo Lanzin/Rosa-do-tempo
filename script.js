@@ -58,7 +58,7 @@ function atualizarContador() {
     atualizarBroto(diferenca.totalMeses);
 }
 
-// Atualiza o broto conforme o estágio
+// Atualiza o broto ou exibe a imagem "Apressadinha"
 function atualizarBroto(estagio) {
     if (estagio >= 12) {
         broto.className = 'broto estagio-12';
@@ -79,7 +79,8 @@ mesesSelect.addEventListener('change', () => {
     if (estagioSelecionado === 0) {
         // Volta para o modo automático
         contadorAtivo = true;
-        apressadinhaImg.style.display = 'none'; // Esconde a imagem
+        apressadinhaImg.style.display = 'none'; // Esconde a "Apressadinha"
+        broto.style.display = 'block'; // Exibe o broto normal
         atualizarContador();
     } else {
         // Pausa o contador e mostra a data correspondente
@@ -96,13 +97,14 @@ mesesSelect.addEventListener('change', () => {
         minutosElement.textContent = '00';
         segundosElement.textContent = '00';
 
-        atualizarBroto(estagioSelecionado);
-
-        // Exibe "Apressadinha" se o usuário selecionar um mês acima do atual
+        // Se for acima do mês atual, troca o broto pela "Apressadinha"
         if (estagioSelecionado > mesAtual) {
+            broto.style.display = 'none';
             apressadinhaImg.style.display = 'block';
         } else {
+            broto.style.display = 'block';
             apressadinhaImg.style.display = 'none';
+            atualizarBroto(estagioSelecionado);
         }
     }
 });
