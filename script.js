@@ -1,7 +1,3 @@
-const broto = document.querySelector('.broto');
-const diasElement = document.getElementById('dias');
-const horasElement = document.getElementById('horas');
-const minutosElement = document.getElementById('minutos');
 const segundosElement = document.getElementById('segundos');
 const dateSlider = document.getElementById('date-slider');
 const mensagemEspecial = document.getElementById('mensagem-especial');
@@ -15,7 +11,7 @@ function atualizarContador() {
     if (!contadorAtivo) return; // Se o contador não estiver ativo, não atualiza
 
     const agora = new Date();
-    const diferenca = agora.getTime() - dataInicio.getTime(2024, 10, 19);
+    const diferenca = agora.getTime() - dataInicio.getTime();
 
     const segundosTotais = Math.floor(diferenca / 1000);
     const minutosTotais = Math.floor(segundosTotais / 60);
@@ -45,8 +41,9 @@ function atualizarContador() {
 document.addEventListener('DOMContentLoaded', () => {
     dateSlider.addEventListener('input', () => {
         const value = dateSlider.value;
-        const diasTotais = Math.floor(value * 90 / 100); // Converter o valor do slider para dias
-        const estagio = Math.min(Math.floor(diasTotais / 30) + 1, 12); // Calcular o estágio baseado nos dias
+        const diasTotais = Math.floor(value * 365 / 100); // Converter o valor do slider para dias
+        const mesesTotais = Math.floor(diasTotais / 30); // Calcular os meses baseados nos dias
+        const estagio = Math.min(mesesTotais + 1, 12); // Calcular o estágio baseado nos meses
 
         const agora = new Date();
         const maxDiasTotais = Math.floor((agora.getTime() - dataInicio.getTime()) / (1000 * 60 * 60 * 24)); // Dias desde a data de início até a data atual
