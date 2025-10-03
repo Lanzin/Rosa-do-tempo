@@ -8,15 +8,14 @@ const broto = document.querySelector('.broto');
 const mesesSelect = document.getElementById('meses-select');
 const apressadinhaImg = document.getElementById('apressadinha');
 
+// Data de início: 19/11/2024 (mês começa em 0, então 10 é novembro)
 const dataInicio = new Date(2024, 10, 19);
 let contadorAtivo = true;
 
-// Função para obter horário de Brasília
+// Função para obter horário local (corrigida)
 function obterHorarioBrasilia() {
-    let agora = new Date();
-    let offset = -3; // UTC-3 para horário de Brasília
-    let brasilia = new Date(agora.getTime() + offset * 3600 * 1000);
-    return brasilia;
+    // Retorna o horário local do navegador
+    return new Date();
 }
 
 // Função para calcular a diferença entre datas
