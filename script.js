@@ -8,8 +8,8 @@ const broto = document.querySelector('.broto');
 const mesesSelect = document.getElementById('meses-select');
 const apressadinhaImg = document.getElementById('apressadinha');
 
-// Data de início: 19/11/2024 (mês começa em 0, então 10 é novembro)
-const dataInicio = new Date(2024, 10, 19);
+// Data de início: 19/10/2024 (mês começa em 0, então 9 é outubro)
+const dataInicio = new Date(2024, 9, 19);
 let contadorAtivo = true;
 
 // Função para obter horário local (corrigida)
@@ -111,3 +111,4 @@ mesesSelect.addEventListener('change', () => {
 // Atualiza o contador a cada segundo
 setInterval(atualizarContador, 1000);
 atualizarContador();
+                             
